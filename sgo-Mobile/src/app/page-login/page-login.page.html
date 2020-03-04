@@ -1,0 +1,28 @@
+
+  <ion-content padding id="fundo">
+    
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <ion-item>
+          <img src="/assets/SGO-logo.png">
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Usuário</ion-label>
+        <ion-input formControlName="username" type="text" name="username" 
+        autocomplete="off" autocorrect="off"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input formControlName="password" type="password" name="password"
+        autocomplete="off" (keyup.enter)="login()"></ion-input>
+      </ion-item>
+    
+      <p text-right><a href="https://sgoengenharia.herokuapp.com/contas/password_reset/">Esqueci minha senha?</a></p>
+    
+      <ion-button type="submit" expand="full" color="primary" 
+      [disabled]="!loginForm.valid">Login</ion-button>
+    </form>
+  
+  </ion-content>

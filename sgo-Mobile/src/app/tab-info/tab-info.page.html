@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Informações</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="sair()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="business" slot="start"></ion-icon>
+      <ion-button color="secondary"  fill="outline" slot="start">SGO - {{empresa?.nome}}</ion-button>
+    </ion-item>
+    <ion-text>
+      <p class="fomatar">
+          {{empresa?.sobre}}
+        <!-- Nosso app automatiza e controla as etapas de solicitações de assistência técnica para nossos edifícios, dando suporte aos clientes das unidades habitacionais. -->
+      </p>
+      
+      <p class="fomatar">
+        Trazendo assim conforto ao cliente na ultilização dessa ferramenta.
+      </p>
+    </ion-text>
+    
+  </ion-card>
+  
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="business" slot="start"></ion-icon>
+      <ion-button color="primary"  sixe="large" fill="outline" slot="start">Contato</ion-button>
+    </ion-item>
+    
+    <ion-card-content>
+      
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label position="floating">E-mail </ion-label>
+          <ion-icon name="mail" size="small" slot="end"></ion-icon>
+          <ion-input [value]="empresa?.email" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-icon name="call" size="small" slot="end"></ion-icon>
+          <ion-input [value]="empresa?.telefone1" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Celular</ion-label>
+          <ion-icon name="logo-whatsapp" size="small" slot="end"></ion-icon>
+          <ion-icon name="phone-portrait" size="small" slot="end"></ion-icon>
+          <ion-input [value]="empresa?.telefone2" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Localização</ion-label>
+            <ion-icon name="pin" size="small" slot="end"></ion-icon>
+            <ion-text>
+                <p class="formatarEndereco">
+                    {{empresa?.endereco}} {{empresa?.bairro}} <br>
+                     {{cidadeEstado}}
+                </p>
+            </ion-text>
+
+          </ion-item>
+      </ion-list>
+      
+    </ion-card-content>
+    
+  </ion-card>
+</ion-content>
+
+

@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Configuração
+    </ion-title>
+    
+    <ion-buttons slot="primary">
+      <ion-button (click)="sair()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+  <!-- Dados Pessoais -->
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-button color="secondary"  fill="outline" slot="start">Dados Pessoais</ion-button>
+    </ion-item>
+    
+    <ion-card-content>
+      
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label position="floating">Nome Completo </ion-label>
+          <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+          <ion-input value="{{usuario?.first_name}} {{usuario?.last_name}}" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">CPF </ion-label>
+          <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+          <ion-input value="{{usuario?.cpf}}" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">E-mail </ion-label>
+          <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+          <ion-input value="{{usuario?.email}}" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+          <ion-input value="{{usuario?.telefone1}}" readonly></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Celular</ion-label>
+          <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+          <ion-input value="{{usuario?.telefone2}}" readonly></ion-input>
+        </ion-item>
+        
+      </ion-list>
+      
+    </ion-card-content>
+    
+  </ion-card>
+
+  <!-- Dados chamados -->
+
+  <ion-card>
+      <ion-item lines="none">
+        <ion-icon name="clipboard" slot="start"></ion-icon>
+        <ion-button color="secondary"  fill="outline" slot="start">Informações Chamados</ion-button>
+      </ion-item>
+      
+      <ion-card-content>
+        
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label position="floating">Limite de chamados diários</ion-label>
+            <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+            <ion-input value="{{usuario?.numChamadosAbertosHoje}}/{{usuario?.limiteChamadosDia}}" readonly></ion-input>
+          </ion-item>
+          
+        </ion-list>
+        
+      </ion-card-content>
+      
+    </ion-card>
+  
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer> -->

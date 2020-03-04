@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="" (click)="toHome()" routerDirection="backward"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Chamado:   #{{protocolo}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-chip color="secondary">
+        <ion-avatar>
+          <img src="../../../assets/SGO-logo.png">
+        </ion-avatar>
+        <ion-label>{{chamado?.statusChamado}}: {{dataEvento}}</ion-label>
+      </ion-chip>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-item color="secondary" lines="full">
+        <ion-text>
+            {{respostaEvento}}
+        </ion-text>
+      </ion-item>
+    </ion-card-content>
+    
+    
+  </ion-card>
+  
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="image" slot="start"></ion-icon>
+      <ion-button color="secondary"  fill="outline" slot="start">Imagem do Local</ion-button>
+    </ion-item>
+    
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+            <img *ngIf="!chamado?.img" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            <img *ngIf="chamado?.img" src="{{chamado?.img}}">
+        </ion-item>
+      </ion-list>
+      
+      <ion-list lines="none">
+        <ion-item class="format">
+          <ion-text>
+            {{chamado?.descricao}}
+          </ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card>
+    
+    <ion-item lines="none">
+      <ion-icon name="checkbox" slot="start"></ion-icon>
+      <ion-button color="secondary"  fill="outline" slot="start">Detalhes</ion-button>
+    </ion-item>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label position="floating">Empreendimento:</ion-label>
+        <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+        <ion-input value="{{empreendimento}}" readonly></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Bloco:</ion-label>
+        <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+        <ion-input value="{{bloco}}" readonly></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Apartamento</ion-label>
+        <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+        <ion-input value="{{apartamento}}" readonly></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Área comum</ion-label>
+        <ion-icon name="checkmark" size="small" slot="end"></ion-icon>
+        <ion-input value="{{chamado?.areaComum}}" readonly></ion-input>
+      </ion-item>
+      
+    </ion-list>
+  </ion-card>
+</ion-content>
+
+

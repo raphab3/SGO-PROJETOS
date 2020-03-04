@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Novo Chamado
+      <!-- {{categorias[0].id}} -->
+    </ion-title>
+    
+    <ion-buttons slot="primary">
+      <ion-button (click)="sair()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+  <form [formGroup]="novoChamadoForm" (ngSubmit)="adicionar()">
+    <!-- Foto do local -->
+<ion-card class="centralizar">
+  <!-- {{foto}} -->
+  <ion-img class="foto" *ngIf="!foto" src="/assets/no-image.svg"></ion-img>
+  <ion-img class="foto" *ngIf="foto" [src]="foto" alt='foto'></ion-img>
+  
+  <ion-item class="centralizar">
+
+      <input class="centralizar" style="display: none" color="primary" type="file"  (change)="onSelect($event)" #fileInput> 
+
+     
+
+  </ion-item>
+  <ion-button expand="full" class="botaoselect" (click)="fileInput.click()" color="secondary"  slot="start">
+    <ion-icon class="icon" slot="icon-only" name="cloud-upload"></ion-icon>  Selecionar Imagem
+  </ion-button> 
+
+  <ion-button *ngIf="imageSelected === true" class="botoes" (click)="onUpload()" color="warning"   slot="start">
+      <ion-icon  class="icon" slot="icon-only" name="cloud-upload"></ion-icon>Upload
+  </ion-button>
+
+  <ion-button *ngIf="imageSelected === true" class="botoes" (click)="deletarImagem()"    color="primary"   slot="start">
+    <ion-icon class="icon" slot="icon-only" name="trash"></ion-icon>Apagar
+</ion-button>
+  
+</ion-card>
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-button color="secondary" fill="outline" slot="start">Localização</ion-button>
+      </ion-item>
+      
+      <ion-card-content>
+        
+        <ion-list>
+          
+          <ion-item>
+            <ion-label>Área Comum</ion-label>
+            <ion-select value="" okText="Confirmar" cancelText="Cancelar" formControlName="areaComum"
+            (ionChange)="checkValueAreaComun($event)">
+            <ion-select-option value=""></ion-select-option>
+            <ion-select-option *ngFor="let data of areasComuns" [value]="data?.id">{{data?.nomeArea}}
+            </ion-select-option>
+            
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label>Apartamento*</ion-label>
+          <ion-select name="apartamento" value="Selecione" okText="Confirmar" cancelText="Cancelar"
+          formControlName="apartamento" (ionChange)="checkValueApartamento($event)">
+          <ion-select-option *ngFor="let data of apartamentos" [value]="data.id">{{data?.apartamento}}
+          </ion-select-option>
+          
+        </ion-select>
+      </ion-item>
+      
+      
+      <ion-chip color="primary" *ngIf="empreendimento">
+        <ion-icon name="pin" color="primary"></ion-icon>
+        <ion-label>Empreendimento: {{empreendimento}}</ion-label>
+      </ion-chip>
+      
+      <ion-chip color="primary" *ngIf="empreendimento">
+        <ion-icon name="pin" color="primary"></ion-icon>
+        <ion-label>Bloco: {{bloco}}</ion-label>
+      </ion-chip>
+      
+      
+    </ion-list>
+    
+  </ion-card-content>
+  
+</ion-card>
+
+<ion-card>
+  <ion-item lines="none">
+    <ion-icon name="clipboard" slot="start"></ion-icon>
+    <ion-button color="secondary" fill="outline" slot="start">Categoria</ion-button>
+  </ion-item>
+  
+  <ion-card-content>
+    
+    <ion-list>
+      <ion-item>
+        <ion-label>Motivo:*</ion-label>
+        <ion-select name="categorias" okText="Confirmar" cancelText="Cancelar" formControlName="categoriaProblema">
+          <ion-select-option *ngFor="let data of categorias" [value]="data.id" required>{{data?.nomeCategoria}}
+          </ion-select-option>
+        </ion-select>
+        
+      </ion-item>
+    </ion-list>
+    
+  </ion-card-content>
+  
+</ion-card>
+
+
+<!-- Relatar problema -->
+<ion-card>
+  <ion-item lines="none">
+    <ion-icon name="alert" slot="start"></ion-icon>
+    <ion-button color="secondary" fill="outline" slot="start">Problema*</ion-button>
+  </ion-item>
+  
+  <ion-card-content>
+    <ion-item>
+      <!-- <ion-label>Descreva:</ion-label> -->
+      <ion-textarea rows="12" cols="20"
+      placeholder="Descreva o problema, caso tenham outros apartamentos envolvidos descrava-os: apt1, apt2, apt3..."
+      formControlName="descricao"></ion-textarea>
+    </ion-item>
+  </ion-card-content>
+  
+</ion-card>
+
+<ion-row>
+  <ion-col size="6">
+    <ion-button type="button" (click)="limparForm()" color="danger" expand="block">Limpar</ion-button>
+  </ion-col>
+  <ion-col size="6">
+    <ion-button type="submit" color="secondary" expand="block" [disabled]="!novoChamadoForm.valid">Cadastrar
+    </ion-button>
+  </ion-col>
+</ion-row>
+
+</form>
+
+<br>
+
+
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer> -->
