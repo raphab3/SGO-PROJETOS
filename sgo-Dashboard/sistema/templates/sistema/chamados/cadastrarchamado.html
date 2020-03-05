@@ -1,0 +1,230 @@
+{% extends 'sistema/base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Cadastrar chamado | {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+
+        <div class="block-header">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{% url 'sistema:listarchamados' %}">
+                        <i class="material-icons">record_voice_over</i> Chamados
+                    </a>
+                </li>
+                <li class="active">
+                    <i class="material-icons">add</i> Abrir Chamado
+                </li>
+            </ol>
+        </div>
+
+        <!-- Vertical Layout -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            ABRIR CHAMADO
+                        </h2>
+                    </div>
+                    <div class="body">
+
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="{{ form.statusChamado.auto_id }}">{{ form.statusChamado.label }}</label>
+                                        <div class="form-line">
+                                            {{ form.statusChamado|add_class:"form-control"}}
+                                        </div>
+                                        {{ form.statusChamado.errors }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        </div>
+                                        <label for="id_prioridade"> Prioridade </label>
+                                        {{ form.prioridade|add_class:"js-range-slider" }}
+                                        {{ form.prioridade.errors }}
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="categoria_id">{{ form.categoriaProblema.label }}</label>
+                                        <div class="">
+                                            {{form.categoriaProblema|add_class:"form-control selectpicker"|attr:"data-live-search=true data-width=100%"}}
+                                            {{ form.categoriaProblema.errors }}
+                                        </div>
+                                        {{ form.categoriaProblema.errors }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+
+                                        <div class="demo-switch-title">O problema envolve uma área comum: Ex: PISCINA,
+                                            CALÇADA.
+                                        </div>
+                                        <div class="switch">
+                                            <label>{{ form.envolveAreaComum|add_class:"form-check-label check-area"}}<span
+                                                    class="lever switch-col-red"></span></label>
+                                        </div>
+                                        <br>
+
+                                        <div class="col-sm-12 menu-area" hidden>
+                                            <div class="form-group">
+                                                <label for="area_id"> Area </label>
+                                                <div class="">
+                                                    {{form.areaComum|add_class:"form-control selectpicker"|attr:"data-live-search=true data-width=100%"}}
+                                                    {{ form.areaComum.errors }}
+                                                    {{ form.envolveAreaComum.errors }}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row-clearfix">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="usuario_id">Selecione o proprietario</label>
+                                        <div class="">
+                                            {{form.usuario|add_class:"form-control selectpicker"|attr:"data-live-search=true data-width=100%"}}
+                                            {{ form.usuario.errors }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="apartamento_id">Selecione o apartamento do proprietario</label>
+                                        <div class="">
+                                            <select id="apartamento_id" class="form-control selectpicker" data-live-search="true" data-width="100%" name="apartamento">
+                                                <option selected value="">---------</option>
+                                            </select>
+
+                                            <p id="garantiaApto"></p>{{ form.apartamento.errors }}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="{{ form.descricao.auto_id }}">{{ form.descricao.label }}</label>
+                                        <div class="form-line">
+                                            {{ form.descricao|add_class:"form-control"}}
+                                        </div>
+                                        {{ form.descricao.errors }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="{{ form.img.auto_id }}">{{ form.img.label }}</label>
+                                        <div class="form-line">
+                                            {{ form.img|add_class:"form-control"}}
+                                        </div>
+                                        {{ form.img.errors }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript">
+      var cadastrar = true;
+
+      $( ".check-area" ).change(function() {
+            let status = $('.check-area').is(':checked');
+            if(status == !true){
+                $(".menu-area").fadeOut()
+                $("#id_areaComum").val('');
+                $('.selectpicker').selectpicker('refresh');  //Atualiza os selectpickers
+
+            }else{
+                $(".menu-area").fadeIn()
+            }
+       });
+
+        $("#apartamento_id").change(function() {
+            var dado = $(this).find(':selected').attr('garantia');
+            $("#garantiaApto").text('Garantia: ' + dado);
+        });
+
+        $( document ).ready(function() {
+            let statusAreaComum = $('.check-area').is(':checked'); //Verificando se possui area comum
+            if(statusAreaComum == true){
+                $(".menu-area").fadeIn();
+            }else{
+                $(".menu-area").fadeOut();
+            }
+
+
+            $("#id_prioridade").ionRangeSlider({
+                skin: "round",
+                grid: false,
+                grid_num: 6,
+                min: 0,
+                max: 5,
+                max_postfix: " Máxima",
+                prefix: "Prioridade: ",
+
+            });
+
+        });
+
+</script>
+
+
+{% endblock %}

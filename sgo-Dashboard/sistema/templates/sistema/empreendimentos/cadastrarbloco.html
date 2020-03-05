@@ -1,0 +1,79 @@
+{% extends 'sistema/base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}Cadastrar bloco | {{ title.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="block-header">
+        <ol class="breadcrumb">
+            <li>
+                <a href="{% url 'sistema:listarempreendimentos' %}">
+                    <i class="material-icons">business</i> Empreendimentos
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'sistema:listarblocos' %}">
+                    <i class="material-icons">dashboard</i> Blocos
+                </a>
+            </li>
+
+            <li class="active">
+                <i class="material-icons">add</i> Cadastrar Bloco
+            </li>
+        </ol>
+    </div>
+
+    <!-- Vertical Layout -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        CADASTRAR BLOCO
+                    </h2>
+                </div>
+                <div class="body">
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="{{ form.empreendimento.auto_id }}">{{ form.empreendimento.label }}</label>
+                                    <div class="form-line">
+                                        {{ form.empreendimento|add_class:"form-control selectpicker"|attr:"data-live-search=true data-width=100%"}}
+                                    </div>
+                                    {{ form.empreendimento.errors }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="{{ form.bloco.auto_id }}">{{ form.bloco.label }}</label>
+                                    <div class="form-line">
+                                        {{ form.bloco|add_class:"form-control"}}
+                                    </div>
+                                    {{ form.bloco.errors }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect"><i class="material-icons">save</i><span>CADASTRAR</span></button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

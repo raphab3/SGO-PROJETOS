@@ -1,0 +1,300 @@
+﻿{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %}Administração{% endblock %}</title>
+    <!-- Favicon-->
+     <link rel="shortcut icon" type="image/ico" href="{% static 'favicon.ico' %}"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="{% static 'plugins/node-waves/waves.css' %}" rel="stylesheet" />
+
+    <!-- sweet alert -->
+    <link href="{% static 'plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{% static 'plugins/animate-css/animate.css' %}" rel="stylesheet" />
+
+    <!-- Ion Range -->
+    <link href="{% static 'plugins/ion-rangeslider/css/ion.rangeSlider.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/ion-rangeslider/css/ion.rangeSlider.skinFlat.css' %}" rel="stylesheet" />
+
+    <!-- Select Css -->
+    <link href="{% static '/plugins/bootstrap-select/css/bootstrap-select.min.css' %}" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Por favor aguarde...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="{% url 'sistema:dashboard' %}">SGO - Gestão</a>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="{% static 'images/user.png' %}" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.get_username }}</div>
+                    <div class="email">{{ user.email }}</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="{% url 'sistema:editarusuario' user.pk %}"><i class="material-icons">person</i>Perfil</a></li>
+                            <li><a href="{% url 'sistema:logout' %}"><i class="material-icons">input</i>Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MENU PRINCIPAL</li>
+                    <li class="active">
+                        <a href="{% url 'sistema:dashboard' %}">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sistema:cadastrarempresa' %}">
+                            <i class="material-icons">work</i>
+                            <span>Empresa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sistema:listarchamados' %}">
+                            <i class="material-icons">record_voice_over</i>
+                            <span>Chamados</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sistema:listarempreendimentos' %}">
+                            <i class="material-icons">business</i>
+                            <span>Emprendimentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sistema:categoriasdeproblemas' %}">
+                            <i class="material-icons">report_problem</i>
+                            <span>Categorias de Problemas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sistema:listarusuarios' %}">
+                            <i class="material-icons">people</i>
+                            <span>Usuários</span>
+                        </a>
+                    </li>
+
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">archive</i>
+                        <span>Relatórios</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="{% url 'sistema:filtrochamado' %}">
+                                <i class="material-icons">record_voice_over</i>
+                                <span>Chamados</span>
+                            </a>
+                        </li>
+                        <li>
+                    </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; Victor Fernandes, Marcelo Victor<br>Marcel Marques 2018, Renan Venâncio 2019.
+                </div>
+
+            </div>
+            <!-- #Footer -->
+        </aside>
+
+    </section>
+    <section class="content">
+        {% block content %}
+        <!-- O conteúdo da página vem aqui -->
+        {% endblock%}
+    </section>
+
+
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'plugins/node-waves/waves.js' %}"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static 'plugins/jquery-countto/jquery.countTo.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'js/admin.js' %}"></script>
+
+    <!-- Demo Js -->
+    <script src="{% static 'js/demo.js' %}"></script>
+
+    <script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+
+    <!-- Rate Plugin -->
+    <script src="{% static 'plugins/rater-js/rater.js' %}"></script>
+
+
+    <script src="{% static 'js/sb-admin-datatables.js' %}"></script>
+   <!-- <script src="{% static 'js/pages/index.js' %}"></script> -->
+
+    <script src="{% static 'js/pages/ui/modals.js' %}"></script>
+
+
+    <script src="{% static 'js/pages/ui/range-sliders.js' %}"></script>
+
+    <script src="{% static 'plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+
+
+    <script src="{% static 'plugins/ion-rangeslider/js/ion.rangeSlider.min.js' %}"></script>
+
+    <!-- Sweet alert -->
+    <script src="{% static 'plugins/sweetalert/sweetalert.min.js' %}"></script>
+
+   <!-- Combos com buscas -->
+    <script type="text/javascript">
+        function msgDelete(redirecionar) {
+            swal({
+              title: "Deseja realmente deletar?",
+              text: "Ao deletar esse registro o mesmo não pode ser recuperado posteriormente. Deseja prosseguir?",
+              icon: "warning",
+              buttons: true,
+              buttons: ["Cancelar", "Sim"],
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location = redirecionar;
+              } else {
+              }
+            });
+        }
+
+
+         $.fn.datepicker.dates['en'] = {
+            days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            daysShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            daysMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+            months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            monthsShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            today: "Today",
+            autoclose: true,
+            disableTouchKeyboard: true,
+            forceParse: true,
+            format: "dd/mm/yyyy",
+            titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+            weekStart: 0
+         };
+
+        $(document).ready(function(){
+            $('select').selectpicker();
+        });
+    </script>
+
+
+    <!-- Responsável por popular os selects dos chamados -->
+    {% block scripts %}
+      <script type="text/javascript">
+        var cadastrar = false;
+      </script>
+    {% endblock %}
+    <script src="{% static 'js/app.js' %}"></script>
+
+
+
+    <style>
+        .errorlist
+        {
+            color: red;
+        }
+    </style>
+
+
+
+</body>
+
+</html>

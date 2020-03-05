@@ -1,0 +1,77 @@
+{% extends 'sistema/base.html' %}
+
+{% block title %}Apartamentos | {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="block-header">
+        <ol class="breadcrumb">
+
+            <li>
+                <a href="{% url 'sistema:listarempreendimentos' %}">
+                    <i class="material-icons">business</i> Empreendimentos
+                </a>
+            </li>
+
+            <li>
+                <a href="{% url 'sistema:listarblocos' %}">
+                    <i class="material-icons">dashboard</i> Blocos
+                </a>
+            </li>
+
+            <li class="active">
+                <i class="material-icons">person_pin</i> Apartamentos
+            </li>
+        </ol>
+    </div>
+
+    <!-- Exportable Table -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        <a class="btn bg-blue" href="{% url 'sistema:cadastrarapartamento' %}">
+                            <i class="material-icons">add</i>
+                            <span>Novo Apartamento</span>
+                        </a>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead>
+                            <tr>
+                                <th>Data de cadastro</th>
+                                <th>Apartamento</th>
+                                <th>Bloco</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <th>Data de cadastro</th>
+                            <th>Apartamento</th>
+                            <th>Bloco</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for apartamento in apartamentos %}
+                            <tr>
+                                <td>{{ apartamento.dataCadastro }}</td>
+                                <td><a href="{{ apartamento.get_absolute_url }}">
+                                    Apartamento {{ apartamento.apartamento }}</a></td>
+                                <td>{{ apartamento.bloco }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,66 @@
+{% extends 'sistema/base.html' %}
+
+{% block title %}Categorias de problemas | {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="block-header">
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <i class="material-icons">report_problem</i> Categorias dos Problemas
+                </li>
+            </ol>
+    </div>
+
+    <!-- Exportable Table -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+
+                        <a class="btn bg-blue" href="{% url 'sistema:cadastrarcategoriadeproblema' %}" >
+                            <i class="material-icons">add</i>
+                            <span>Nova Categoria</span>
+                        </a>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                          <thead>
+                            <tr>
+                              <th>Data de cadastro</th>
+                              <th>Categoria</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>Data de cadastro</th>
+                              <th>Categoria</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            {% for categoria in categorias %}
+                                <tr>
+                                    <td>{{ categoria.dataCadastro }}</td>
+                                    <td><a href="{{ categoria.get_absolute_url }}">{{ categoria.nomeCategoria }}</a></td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+

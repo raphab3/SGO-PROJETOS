@@ -1,0 +1,84 @@
+{% extends 'sistema/base.html' %}
+
+{% block title %}Blocos | {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="block-header">
+        <ol class="breadcrumb">
+
+            <li>
+                <a href="{% url 'sistema:listarempreendimentos' %}">
+                    <i class="material-icons">business</i> Empreendimentos
+                </a>
+            </li>
+
+            <li class="active">
+                <i class="material-icons">dashboard</i> Blocos
+            </li>
+        </ol>
+    </div>
+
+    <!-- Exportable Table -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+
+                        <a class="btn bg-blue" href="{% url 'sistema:cadastrarbloco' %}">
+                            <i class="material-icons">add</i>
+                            <span>Novo Bloco</span>
+                        </a>
+
+                        <a class="btn bg-red" href="{% url 'sistema:listarapartamentos' %}" >
+                            <i class="material-icons">person_pin</i>
+                            <span>Gerenciar Apartamentos</span>
+                        </a>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead>
+                            <tr>
+                                <th>Data de cadastro</th>
+                                <th>Bloco</th>
+                                <th>Empreendimento</th>
+                            </tr>
+                            <thead>
+                            <tr>
+                                <th>Data de cadastro</th>
+                                <th>Bloco</th>
+                                <th>Empreendimento</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Data de cadastro</th>
+                                <th>Bloco</th>
+                                <th>Empreendimento</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for bloco in blocos %}
+                            <tr>
+                                <td>{{ bloco.dataCadastro }}</td>
+                                <td><a href="{{ bloco.get_absolute_url }}">Bloco {{ bloco.bloco }}</a></td>
+                                <td>{{ bloco.empreendimento }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

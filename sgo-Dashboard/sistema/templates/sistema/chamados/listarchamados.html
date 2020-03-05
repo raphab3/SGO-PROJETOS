@@ -1,0 +1,78 @@
+{% extends 'sistema/base.html' %}
+
+{% block title %}Chamados | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="block-header">
+            <ol class="breadcrumb">
+
+                <li class="active">
+                    <i class="material-icons">record_voice_over</i> Chamados
+                </li>
+            </ol>
+    </div>
+
+    <!-- Exportable Table -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+
+                        <a class="btn bg-blue" href="{% url 'sistema:cadastrarchamado' %}" >
+                            <i class="material-icons">add</i>
+                            <span>Novo</span>
+                        </a>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                          <thead>
+                            <tr>
+                              <th>Protocolo</th>
+                              <th>Data de cadastro</th>
+                              <th>Ultima alteração</th>
+                              <th>Status</th>
+                              <th>Empreendimento</th>
+                              <th>Solicitante</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>Protocolo</th>
+                              <th>Data de cadastro</th>
+                              <th>Ultima alteração</th>
+                              <th>Status</th>
+                              <th>Empreendimento</th>
+                              <th>Solicitante</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            {% for chamado in chamados %}
+                                <tr>
+                                    <td><a href="{{ chamado.get_absolute_url }}">{{ chamado.protocolo }}</a></td>
+                                    <td>{{ chamado.dataCadastro }}</td>
+                                    <td>{{ chamado.dataInteracao }}</td>
+                                    <td>{{ chamado.statusChamado }}</td>
+                                    <td>{{ chamado.apartamento.bloco.empreendimento }}</td>
+                                    <td>{{ chamado.usuario.first_name }} {{ chamado.usuario.last_name }}</td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- #END# Exportable Table -->
+
+
+{% endblock %}
+
